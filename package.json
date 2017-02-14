@@ -1,0 +1,10 @@
+{
+  "name": "Summit-Series-Concept",
+  "version": "0.0.1",
+  "description": "Summit Series 72 Concept",
+  "dependencies": {
+    "express": "4.10.2",
+    "johnny-five": "^0.10.6",
+    "socket.io": "1.2.0"
+  }
+}

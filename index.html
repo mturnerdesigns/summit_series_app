@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Concept</title>
+    <style>
+        #box1 {
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        #box2 {
+            background-color: green;
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script>
+        var socket = io();
+        socket.on('box1', function(trigger) {
+          // console.log('trigger!');
+                box1.style.left = '200px';
+        });
+        socket.on('box2', function(trigger) {
+          // console.log('trigger!');
+                box2.style.left = '400px';
+        });
+    </script>
+</body>
+
+</html>
