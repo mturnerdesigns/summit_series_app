@@ -1,1 +1,1 @@
-Summit Series 72 App
+Summit Series 72 Apps
