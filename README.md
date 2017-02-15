@@ -1,1 +1,1 @@
-Summit Series 72 Concept App
+Summit Series 72 App
