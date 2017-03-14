@@ -1,7 +1,12 @@
 //Socket.io
+var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+app.use(express.static(__dirname + '/public'));
+
+
 //johnny-five
 var five = require("johnny-five");
 var board = new five.Board({
@@ -36,31 +41,43 @@ board.on("ready", function(document) {
     //loop
     var count1 = 1;
     var count2 = 1;
-    buttonPin1.on("press", function() {
-        // console.log('Button 1 on!');
+
+    //1. platform 1 led starts blinking
+    ledPin1.blink();
+
+    //2 platform 1 led stays on
+    buttonPin1.on("release", function() {
+        console.log('Button 1 on!');
+        ledPin1.stop();
         count1++;
         // console.log(count1);
-        if (count1 > 2) {
+        if (count1 > 1) {
             ledPin1.on();
             var trigger;
             io.emit('box1', trigger);
         }
     });
-    buttonPin2.on("press", function() {
+    //3 platform 1 ENDS, platform 2 starts blinking
+    io.on('done', function(trigger) {
+      console.log("HERE!");
+    })
+
+    buttonPin2.on("release", function() {
         // console.log('Button 2 on!');
         count2++;
         // console.log(count2);
-        if (count2 > 2) {
+        if (count2 > 1) {
             ledPin2.on();
             var trigger;
             io.emit('box2', trigger);
         }
     });
 
-
-
     http.listen(3000, function() {
         console.log('listening on *:3000');
     });
 
 });
+// http.listen(3000, function() {
+//     console.log('listening on *:3000');
+// });
